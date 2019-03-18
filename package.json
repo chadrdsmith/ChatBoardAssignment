@@ -9,6 +9,8 @@
   "author": "Chad Smith 1142221",
   "license": "MIT",
   "dependencies": {
+    "basic-auth": "^2.0.1",
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "express-handlebars": "^3.0.2"
   }
