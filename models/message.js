@@ -4,7 +4,7 @@ var messageSchema = mongoose.Schema( {
     name: String,
     comments: [{body: String, date: Date}],
     date: {
-        type: date, 
+        type: Date, 
         default: Date.now
     } 
 });

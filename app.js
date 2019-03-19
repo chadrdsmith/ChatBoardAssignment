@@ -2,7 +2,9 @@
 var express = require ('express'),
       mongoose = require('mongoose')
       Comment = require('./models/message')
-      basicAuth = require('basic-auth');
+      basicAuth = require('basic-auth')
+      main = require('./routes/routes')
+      routes = require('./routes/routes');
 
 var handlebars = require('express-handlebars').create({
     defaultLayout:'main'});
@@ -15,29 +17,30 @@ app.set('port', process.env.PORT || 3000);
 app.use(require('body-parser').urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 
-// Authorization Middleware
-app.use(function (req, res, next) {
-    var user = basicAuth(req);
-
-    if (!user || !user.name || !user.pass) {
-        res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
-        res.status(401);
-        res.render('401');
-    }
-
-    if (user.name === 'chenry' && user.pass === 'test') {
-        next();
-    } else {
-        res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
-        res.status(401);
-        res.render('401');
-    }
-});
-
 // Routes
-app.get ('/', function(req, res) {
-    res.render('index');
-});
+app.use ('/', routes);
+
+// Authorization Middleware
+// app.use(function (req, res, next) {
+//     var user = basicAuth(req);
+
+//     if (!user || !user.name || !user.pass) {
+//         res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
+//         res.status(401);
+//         res.render('401');
+//     }
+
+//     if (user.name === 'chenry' && user.pass === 'test') {
+//         next();
+//     } else {
+//         res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
+//         res.status(401);
+//         res.render('401');
+//     }
+// });
+
+
+
 
 //custom 404 page
 app.use(function(req, res){
