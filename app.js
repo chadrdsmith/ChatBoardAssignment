@@ -1,13 +1,18 @@
 // Requirements
 var express = require ('express'),
-      mongoose = require('mongoose')
-      Comment = require('./models/message')
-      basicAuth = require('basic-auth')
-      main = require('./routes/routes')
+      mongoose = require('mongoose'),
+      Comment = require('./models/user'),
+      basicAuth = require('basic-auth'),
+      dbServer = require ('./models/dbServer'),
       routes = require('./routes/routes');
 
 var handlebars = require('express-handlebars').create({
-    defaultLayout:'main'});
+    defaultLayout:'main',
+    helpers: { 
+  
+}
+});
+
 
 // Express Middleware    
 var app = express();

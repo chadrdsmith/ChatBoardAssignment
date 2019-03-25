@@ -1,0 +1,22 @@
+<div class ="container-fluid" >
+    <div class = "row">
+        <div id="header" class ="col-sm-12">
+            <h4>SimpleChat</h4>
+        </div>
+        <div id="box" class="col-2">
+            {{>navigation}}
+        </div>
+            <div id="box" class="col-10">
+                <div class="container">
+                <form id="first-login" action="/newUser" name ="login" method="POST" >
+                    <h4>Register a new user</h4>
+                    <label>User name :</label>
+                    <input type="text" name="username">
+                    <label>Password :</label> 
+                    <input type ="password" name="password">
+                    <input type ="submit" value="submit-me"/> 
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

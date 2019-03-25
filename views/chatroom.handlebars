@@ -1,0 +1,37 @@
+<div class ="container-fluid" >
+    <div class = "row">
+        <div id="header" class ="col-sm-12">
+            <h4>SimpleChat</h4>
+        </div>
+            <div id="box" class="col-2">
+                {{>navigation}}
+            </div>
+        <div id="box" class="col-10">
+            <div id="chatbox">
+               
+                    {{message}}
+               
+                    {{#each name}}
+                        <p>{{this}}</p>
+                    {{/each}}
+                
+
+
+
+
+
+            </div>
+       
+        <div>
+        <!--chat_area-->
+           <form id="message" action="/chatbox" name ="chat" method="POST">
+    	    <textarea class="form-control" name="message" placeholder="type a message"></textarea>
+		        <hr>
+                <button class="btn btn-primary" type="submit">Send</button>
+          </form> <!--message_section-->
+        
+        </div>
+    </div>
+</div>
+
+
