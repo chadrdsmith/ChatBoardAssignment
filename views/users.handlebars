@@ -13,10 +13,23 @@
             
             <h4>User posts</h4>
 
-
-
-
+        <div id="chatbox">
+               
+                    {{!-- {{message}} --}}
+               
+                    {{#each chatters}}
+                        <div id="cbox">
+                        <p>{{this.message}}<br>{{this.date}}</p>
+                        
+                        <form action = "/delete" method="POST">
+                        <input type ="submit" value="delete" id="btnPost" class="btn btn-danger" >
+                        <input type="hidden" name="id" value="{{this.id}}>
+                        </form>
+                        </div>
+                    {{/each}}
+        </div>
         </div>
     </div>
+    
 </div>
 

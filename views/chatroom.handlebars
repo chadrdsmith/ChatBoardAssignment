@@ -9,10 +9,12 @@
         <div id="box" class="col-10">
             <div id="chatbox">
                
-                    {{message}}
+                    {{!-- {{message}} --}}
                
-                    {{#each name}}
-                        <p>{{this}}</p>
+                    {{#each chatters}}
+                        <div id="cbox">
+                        <p>{{this.message}}<br>{{this.date}}</p>
+                        </div>
                     {{/each}}
                 
 
