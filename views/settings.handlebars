@@ -1,0 +1,22 @@
+<div class ="container-fluid" >
+    <div class = "row">
+        <div id="header" class ="col-sm-12">
+            <h4>Settings</h4>
+        </div>
+        <div id="box" class="col-2">
+            {{>navigation}}
+        </div>
+            <div id="box" class="col-10">
+                <div class="container">
+                <form id="settingsPage" action="/settingsChange" name ="login" method="POST" >
+                    Posts are listed: <input type ="button" name="newest" value="newest"> 
+                                      <input type ="button" name="oldest" value ="oldest">
+                                      <hr>
+                    Background Colour: <input type ="button" id="setClrBtn" name="white" value="white" data-clr="white"> 
+                                       <input type ="button" id="setClrBtn" name="red" value ="red" data-clr="red"> 
+                                       <input type ="button" id="setClrBtn" name="green" value ="green" data-clr="green">                   
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
