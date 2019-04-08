@@ -1,0 +1,35 @@
+<div class ="container-fluid" >
+    <div class = "row">
+        <div id="header" class ="col-sm-12">
+            <h2>U of W Chat</h2>
+        </div>
+            <div id="boxnav" class="col-2">
+                {{>navigation}}
+            </div>
+         
+            {{#if alert}}
+                <div id="box" class="col-10">
+                    <div class="container">
+                        <h2>{{alert}}</h2>
+                    </div>
+                </div>
+            {{else}}    
+            
+            <div id="box" class="col-10">
+                <h2>Current Users</h2>
+
+            <div id="userBox">
+               
+                {{#each users}}
+                        <div id="cubox">
+                        <p>{{this.username}}</p>
+                        <input type ="button" value="delete user" id="delUser" class="btn btn-danger" data-id="{{this.id}}"> &nbsp;
+                        <input type ="button" value="disable user" id="disUser" class="btn btn-warning" data-id="{{this.id}}">
+                        </div>
+                    {{/each}}
+        </div>
+        </div>
+    {{/if}}
+    </div>
+    
+</div>

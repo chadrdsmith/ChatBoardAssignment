@@ -1,34 +1,205 @@
+* {
+  margin: 0;
+  padding: 0;
+  
+ 
+}
+
+
+/* Color Theme Swatches in Hex */
+.Bogart-1-hex { color: #DDDCC5; }
+.Bogart-2-hex { color: #958976; }
+.Bogart-3-hex { color: #611427; }
+.Bogart-4-hex { color: #1D2326; }
+.Bogart-5-hex { color: #6A6A61; }
+
+
 body {
-    background-color: lightblue;
-    height: 100%;
+   
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    color: #1D2326;
+    line-height: 1.6;
+    background-color: #DDDCC5;
     
   }
+
+/*Nav Bar*/
+.nav > li > a {
+  color: #1D2326;
+}
+
+.nav > li > a:hover { 
+  background-color: #958976 !important;  
+  color: #DDDCC5; 
+}
+
+#showcase {
+ 
+  background-image:url('/img/landing.jpg');
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  align-items: center;
+  padding: 0 20;
+  color: #611427;
+}   
+
+#showcase h1 {
+  font-size: 50px;
+  text-align: center;
+  padding: 30px;
+}
+
+#showcase h2 {
+  color: #fff;
+  font-size: 40px;
+}
+
+#showcase label {
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 100px;
+    text-align: left; 
+    color: #fff;
+}
+
+#showcase input {
+  display: inline-block;
+  float: left;
+}
+
+#loginButton {
+  margin-top: 10px;
+}
+
+#invText {
+  color: #fff;
+  font-weight: bold;
+}
+
+#border {
+  background-color: #000;
+  text-align: center;
+  padding: 20px 20px;
+
+}
+
 #header {
     border: solid black 1px;
     height: 50px;
     text-align: center;
-    padding-top: 10px;
+    padding-top: 5px;
 }
   #box {
-    border: solid black 1px;
-    height: 800px;
-}
-#chatbox {
-  margin: 20px;
-  height: 600px;
+  padding-bottom: 20px;
   border: solid black 1px;
+  height: 100hv;
+  overflow: scroll;
 }
 
-#cbox {
-  width: 600px;
-  height: 50px;
+#boxnav {
+  padding-bottom: 20px;
+  border: solid black 1px;
+  height: 100hv;
+}
+
+#box h2 {
+  padding-top: 20px;
+}
+#chatbox {
+ 
+  height: 600px;
+ 
+}
+
+/* Chatroom */
+
+#date {
+  font-size: 10px;
+}
+
+
+/* Current User Page */
+
+#cubox {
+  width: 100%;
+  height: auto;
+  overflow: auto;
   background-color: white;
   color: black;
   border: solid black 1px;
   margin-top: 10px;
   margin-bottom: 10px;
+  padding: 0px 10px 5px 10px;
+  font-size: 20px;
+}
+
+#userBox {
+  margin: 20px;
+  height: 600px;
+  
+}
+
+#userbox input {
+  padding: 10px;
+}
+
+#delUser, #disUser {
+  margin: 10px;
+}
+
+/*Chat Page*/
+
+#cbox {
+  width: 100%;
+  height: auto;
+  overflow: auto;
+  background-color: white;
+  color: black;
+  border: solid black 1px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 0px 10px 5px 10px;
+}
+
+#cbox p {
+  line-height: 0.8;
+}
+
+#message {
+  width: 100%;
+}
+
+/* Register User Page */
+
+#box label {
+  display: inline-block;
+  float: left;
+  clear: left;
+  width: 100px;
+  text-align: left; 
+}
+
+#box input {
+display: inline-block;
+float: left;
+}
+
+/*Settings Page*/
+
+#setClrBtn, #direction {
+  margin: 10px;
 }
 
 #invText {
   text-align: center;
+}
+
+.alert {
+  display: none;
 }

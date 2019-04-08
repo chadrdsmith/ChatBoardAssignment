@@ -1,23 +1,39 @@
 <div class ="container-fluid" >
     <div class = "row">
         <div id="header" class ="col-sm-12">
-            <h4>SimpleChat</h4>
+            <h2>U of W Chat</h2>
         </div>
-        <div id="box" class="col-2">
-            {{>navigation}}
-        </div>
-            <div id="box" class="col-10">
-                <div class="container">
-                <form id="first-login" action="/newUser" name ="login" method="POST" >
-                    <h4>Register a new user</h4>
-                    <label>User name :</label>
-                    <input type="text" name="username">
-                    <label>Password :</label> 
-                    <input type ="password" name="password"><br>
-                    <input type ="checkbox" name="admin">Admin User<br>
-                    <input type ="submit" value="submit-me"/> 
-                </form>
+            <div id="boxnav" class="col-2">
+                {{>navigation}}
             </div>
-        </div>
+                {{#if alert}}
+                    <div id="box" class="col-10">
+                        <div class="container">
+                            <h2>{{alert}}</h2>
+                        </div>
+                    </div>
+                {{else}}    
+        
+                <div id="box" class="col-10">
+                    <div class="container">
+                        <form id="first-login" action="/newUser" name ="login" method="POST" >
+                            <h2>Register a new user</h2>
+                            <hr>
+                            <label>User name :</label>
+                            <input type="text" name="username"><br>
+                            <label>Password :</label> 
+                            <input type ="password" name="password"><br><br>
+                            <input type ="checkbox" name="admin">&nbsp; Admin User<br>
+                            <hr>
+                            <input type ="submit" value="SUBMIT" class="btn btn-dark"/> 
+                        </form>
+                    </div>
+                    {{#if confirm}}
+                    <br><hr>
+                    <p>{{confirm}}</p>
+                    {{/if}}
+                </div>
+                {{/if}}
+                
     </div>
 </div>

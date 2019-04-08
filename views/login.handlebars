@@ -1,24 +1,21 @@
-
-
-<div class ="d-flex justify-content-center align-items-center" style="height:800px;">
- 
-     
-        <form id="first-login" action="/form-login" name ="login" method="POST">
-            <h4>Please login</h4>
-            <label>User name :</label>
-            <input type="text" name="username">
-            <label>Password :</label> 
-            <input type ="password" name="password">
-            <input type ="submit" value="submit-me"/> 
-        </form>
+<div id="showcase">
+    <h1>Welcome to the U of W ACS Chatroom</h1> 
+        <div id="border">
+            <form id="first-login" action="/form-login" name ="login" method="POST">
+                <h2>Please login</h2>
+                <label>User name :</label>
+                <input type="text" name="username"><br>
+                <label>Password :</label> 
+                <input type ="password" name="password"><br>
+                <input type ="submit" value="SUBMIT" id="loginButton" /> 
+            </form>
+                <br><br>
+                <div id="invText">
+                    {{#if invalid}}
+                        {{invalid}}
+                    {{/if}}
+                </div>
+        </div>
 </div>
-
-<div id="invText">
-    {{#if invalid}}
-        {{invalid}}
-    {{/if}}
-</div>
-
-
 
 
