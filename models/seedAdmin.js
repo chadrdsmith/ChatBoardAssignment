@@ -1,4 +1,5 @@
 var md5 = require ('md5');
+
 var seed = function(User) {
     User.find(function(err, user) {
         if (user.length) return;

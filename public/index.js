@@ -1,8 +1,5 @@
-var glbCk = '';
 $(document).ready(function() {
 
-
-  
   // Ajax call to set background color for user based on Cookies
   
   $.ajax({
@@ -28,7 +25,7 @@ $(document).ready(function() {
             type: 'PUT',
             contentType: "application/x-www-form-urlencoded",
             data: 'dir=' +dir,
-                
+               
             success: function (result) {
                 document.querySelector('.alert').style.display = 'inline';
                 setTimeout(() => {
@@ -123,7 +120,13 @@ $(document).ready(function() {
             contentType: "application/x-www-form-urlencoded",
             data: 'id=' +id,
             success: function (result) {
-                window.location.href='/currentUsers'},
+                //window.location.href='/currentUsers'
+                document.querySelector('.alert').style.display = 'inline';
+                setTimeout(() => {
+                document.querySelector('.alert').style.display = 'none';
+                }, 2000);
+                
+            },
             error: function (err) {
                 alert('You do not have permission to delete posts')
             }
@@ -147,11 +150,6 @@ $(document).ready(function() {
                 console.log (err)}
         });
     });
-
-    
-
-
-
 });    
 
 

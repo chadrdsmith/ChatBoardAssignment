@@ -1,10 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var basicAuth = require('basic-auth');
-var Admin = require ('../models/user');
 var User = require ('../models/user');
 var Message = require ('../models/Messages');
-var Sessions = require ('../models/Sessions');
 var db = require ('../models/dbServer');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser').urlencoded({extended: true});
@@ -40,19 +37,32 @@ router.get('/', function(req, res) {
 // Login Page. Check for user credentials
 
 router.post ('/form-login', function (req, res) {
-  User.findOne({username: req.body.username, password: md5(req.body.password)}, function(err, user){
+  
+  var p = md5(req.body.password);
+  User.findOne({username: req.body.username, password: p}, function(err, user){
     var p = md5(req.body.password);
+    
     if (err) {
-      res.render('login',{invalid: 'Error accesing database. Try again'});
-    } 
-    else if (user.password == p) {
-      currentUser = user;
-      req.session.user = user;
-      res.redirect(303, 'chatroom');
-    } 
-    else {
       res.status(401);
-      res.render ('login', {invalid: 'Wrong username or password.' });
+      res.render('login',{invalid: 'Error accesing database. Try again'});
+      
+    } 
+    
+    if (user != null) {
+     
+        if (user.password == p) {
+          currentUser = user;
+          req.session.user = user;
+          res.redirect(303, 'chatroom');
+        } 
+        else {
+          res.status(401);
+          res.render ('login', {invalid: 'Wrong username or password.' });
+        }
+    }
+    else {
+          res.status(401);
+          res.render ('login', {invalid: 'Wrong username or password.' });
     }
   })
 });
@@ -60,12 +70,12 @@ router.post ('/form-login', function (req, res) {
 // Chat Page. Both Admin and Regular users can post. Only Admin can delete posts.
 
 router.get('/chatroom', function(req, res) {
+  var cur = -1;
   if (req.session.user){
     var u = '';
     u = currentUser.username+'direction';
-    var cur = req.cookies[u];
-      
-    Message.find ({}).limit(5).sort({date: cur})
+    cur = req.cookies[u];
+    Message.find ({}).sort({date: cur})
         .exec(function(err, chats) {
           if(err) {
             throw new Error (err);
@@ -90,7 +100,7 @@ router.post('/chatbox', function(req, res) {
   const newMessage = new Message({name: name, message: message});
   newMessage.save()
     .then(function () { 
-      Message.find ({}).limit(5).sort({date: -1})
+      Message.find ({}).sort({date: -1})
         .exec(function(err, chats) {
           if(err) {
             throw new Error (err);
@@ -101,7 +111,7 @@ router.post('/chatbox', function(req, res) {
 }
   else {
    
-      Message.find ({}).limit(5).sort({date: -1})
+      Message.find ({}).sort({date: -1})
         .exec(function(err, chats) {
           if(err) {
             throw new Error (err);
@@ -132,11 +142,12 @@ router.delete('/deleteChat', function (req, res) {
 // User Posts. Display the posts for the current user.
 
 router.get('/users', function(req, res) {
+  var cur = -1;
   if (req.session.user){
     var u = '';
     u = currentUser.username+'direction';
-    var cur = req.cookies[u];
-    Message.find ({'name': currentUser.username}).limit(5).sort({date: -1})
+    cur = req.cookies[u];
+    Message.find ({'name': currentUser.username}).sort({date: cur})
       .exec(function(err, chats) {
         if(err) {
           throw new Error (err);
@@ -271,7 +282,8 @@ router.get('/settings', function (req, res) {
 // Settings Page. Set cookie to store user settings for post direction. 
 
 router.put('/setDirection', function (req, res) {
-  res.cookie(currentUser.username +'direction', req.body.dir, {signed: true, maxAge: 604800400}).send();
+  res.cookie(currentUser.username +'direction', req.body.dir, {maxAge: 604800400}).send();
+  res.end();
 });
 
 // Settings Page. Set Cookies to store user settings for background color.
@@ -280,7 +292,7 @@ router.put('/setCookie', function (req, res) {
       name: currentUser.username,
       clr: req.body.clr
   };
-  res.cookie(currentUser.username, req.body.clr, {signed: true, maxAge: 604800400}).send(currentUser.username);
+  res.cookie(currentUser.username, req.body.clr, {maxAge: 604800400}).send(currentUser.username);
 });
 
 // Get current User

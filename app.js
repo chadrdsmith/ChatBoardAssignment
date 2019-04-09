@@ -1,8 +1,6 @@
 // Requirements
 var express = require ('express'),
       mongoose = require('mongoose'),
-      Comment = require('./models/user'),
-      basicAuth = require('basic-auth'),
       dbServer = require ('./models/dbServer'),
       User = require ('./models/user.js');
       dbSeed = require ('./models/seedAdmin'),
