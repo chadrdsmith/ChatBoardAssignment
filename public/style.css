@@ -16,12 +16,14 @@ body {
     color: #1D2326;
     line-height: 1.6;
     background-color: #DDDCC5;
+    min-width: 800px;
   }
 
 /*Nav Bar*/
 
 .nav > li > a {
   color: #1D2326;
+  font-size: 12px;
 }
 
 .nav > li > a:hover { 

@@ -5,7 +5,9 @@ var express = require ('express'),
       User = require ('./models/user.js');
       dbSeed = require ('./models/seedAdmin'),
       routes = require('./routes/routes'),
-      bodyParser = require('body-parser');
+      credentials = require('./credentials'),
+      bodyParser = require('body-parser'),
+      cookieParser = require('cookie-parser');;
 var handlebars = require('express-handlebars').create({
     defaultLayout:'main',
     helpers: { }
@@ -16,10 +18,10 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3034);
 app.use(require('body-parser').urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
-
+app.use(cookieParser(credentials.cookieSecret));
 // seed admin user
 dbSeed.seed(User);
 

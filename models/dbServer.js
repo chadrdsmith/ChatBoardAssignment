@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');
 
-const server = '127.0.0.1:27017'; 
-const database = 'test-chat';   
+const server = '127.0.0.1:20084'; 
+const database = 'a3';   
 
 class Database {
   constructor() {

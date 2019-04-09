@@ -74,7 +74,7 @@ router.get('/chatroom', function(req, res) {
   if (req.session.user){
     var u = '';
     u = currentUser.username+'direction';
-    cur = req.cookies[u];
+    cur = req.signedCookies[u];
     Message.find ({}).sort({date: cur})
         .exec(function(err, chats) {
           if(err) {
@@ -279,20 +279,20 @@ router.get('/settings', function (req, res) {
   }
 }); 
 
-// Settings Page. Set cookie to store user settings for post direction. 
+// Settings Page. Set signed cookie to store user settings for post direction. 
 
 router.put('/setDirection', function (req, res) {
-  res.cookie(currentUser.username +'direction', req.body.dir, {maxAge: 604800400}).send();
+  res.cookie(currentUser.username +'direction', req.body.dir, {signed: true, maxAge: 604800400}).send();
   res.end();
 });
 
-// Settings Page. Set Cookies to store user settings for background color.
+// Settings Page. Set signed cookie to store user settings for background color.
 router.put('/setCookie', function (req, res) {
   userSettings = {
       name: currentUser.username,
       clr: req.body.clr
   };
-  res.cookie(currentUser.username, req.body.clr, {maxAge: 604800400}).send(currentUser.username);
+  res.cookie(currentUser.username, req.body.clr, {signed: true, maxAge: 604800400}).send(currentUser.username);
 });
 
 // Get current User
